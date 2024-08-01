@@ -10,6 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        repository: 'freeCodeCamp/devdocs'
     
     - name: Login to Docker Hub
       uses: docker/login-action@v3
@@ -18,7 +20,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag zhzy0077/devdocs:latest
+      run: docker build . --file Dockerfile-alpine --tag zhzy0077/devdocs:latest
 
     - name: Publish the Docker image
       run: docker push zhzy0077/devdocs:latest
